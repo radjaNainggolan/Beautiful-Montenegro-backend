@@ -2,6 +2,7 @@ package com.gis.bmne.ParkService;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gis.bmne.models.Park;
@@ -12,12 +13,13 @@ public class ParkService {
 
 	ParkRepository parkRepository;
 
+	@Autowired
 	public ParkService(ParkRepository parkRepository) {
 		super();
 		this.parkRepository = parkRepository;
 	}
 	
-	List<Park> getAllParks(){
+	public List<Park> getAllParks(){
 		return parkRepository.findAll();
 	}
 	
