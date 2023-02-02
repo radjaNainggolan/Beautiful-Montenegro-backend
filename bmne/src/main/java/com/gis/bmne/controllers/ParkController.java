@@ -1,6 +1,7 @@
 package com.gis.bmne.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,5 +33,10 @@ public class ParkController {
 	@PostMapping
 	void insertPark(@RequestBody Park newPark) {
 		parkService.insertPark(newPark);
+	}
+	
+	@GetMapping("/last")
+	public Long getLastInsertedPark(){
+		return parkService.selectLastInsertedPark();
 	}
 }
