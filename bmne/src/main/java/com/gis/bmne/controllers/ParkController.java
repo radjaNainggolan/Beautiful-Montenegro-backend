@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gis.bmne.ParkService.ParkService;
 import com.gis.bmne.models.Park;
+import com.gis.bmne.services.ParkService;
 
 @RestController
 @RequestMapping("/parks")

@@ -1,4 +1,4 @@
-package com.gis.bmne.ParkService;
+package com.gis.bmne.services;
 
 import java.util.List;
 
