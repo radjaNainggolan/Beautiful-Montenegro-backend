@@ -24,5 +24,8 @@ public class LocationService {
 		return locationRepository.findAll();
 	}
 	
+	public void insertLocation(Location newLocation) {
+		locationRepository.save(newLocation);
+	}
 	
 }
