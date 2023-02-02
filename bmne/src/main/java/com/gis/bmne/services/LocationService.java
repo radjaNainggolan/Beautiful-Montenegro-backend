@@ -2,6 +2,7 @@ package com.gis.bmne.services;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gis.bmne.models.Location;
@@ -11,7 +12,8 @@ import com.gis.bmne.repositories.LocationRepository;
 public class LocationService {
 
 	LocationRepository locationRepository;
-
+	
+	@Autowired
 	public LocationService(LocationRepository locationRepository) {
 		super();
 		this.locationRepository = locationRepository;
