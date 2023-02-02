@@ -45,6 +45,12 @@
 			<optional>true</optional>
 		</dependency>
 		
+		<dependency>
+		    <groupId>org.geolatte</groupId>
+		    <artifactId>geolatte-geojson</artifactId>
+		    <version>1.9.0</version>
+		</dependency>
+
 		
 		
 		<dependency>
@@ -61,10 +67,16 @@
 		</dependency>
 		
 		<dependency>
-		    <groupId>com.vividsolutions</groupId>
-		    <artifactId>jts-core</artifactId>
-		    <version>1.14.0</version>
+		    <groupId>org.geolatte</groupId>
+		    <artifactId>geolatte-geom</artifactId>
+		    <version>1.9.0</version>
 		</dependency>
+		
+<!--		<dependency>-->
+<!--		    <groupId>com.vividsolutions</groupId>-->
+<!--		    <artifactId>jts-core</artifactId>-->
+<!--		    <version>1.14.0</version>-->
+<!--		</dependency>-->
 
 	
 		<dependency>

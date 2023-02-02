@@ -1,6 +1,13 @@
 package com.gis.bmne.models;
 
-import com.vividsolutions.jts.geom.Polygon;
+import org.geolatte.geom.G2D;
+import org.geolatte.geom.Polygon;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+//import com.vividsolutions.jts.geom.Polygon;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -31,17 +38,24 @@ public class Park {
 	)
 	private String description;
 	
+	
 	@Column(
 			name = "geometry",
 			columnDefinition = "geometry(Polygon,3857)"
 	)
-	private Polygon geometry;
+	private Polygon<G2D> geometry; 
 
 	public Park() {
 		super();
 	}
 
-	public Park(Long id, String name, String description, Polygon geometry) {
+	public Park(Long id, String name, String description) {
+		this.id = id;
+		this.name = name;
+		this.description = description;
+	}
+	
+	public Park(@JsonProperty("id")Long id, @JsonProperty("name") String name, @JsonProperty("description") String description,@JsonProperty("geometry") Polygon<G2D> geometry) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -73,11 +87,11 @@ public class Park {
 		this.description = description;
 	}
 
-	public Polygon getGeometry() {
+	public Polygon<G2D> getGeometry() {
 		return geometry;
 	}
 
-	public void setGeometry(Polygon geometry) {
+	public void setGeometry(Polygon<G2D> geometry) {
 		this.geometry = geometry;
 	}
 	
