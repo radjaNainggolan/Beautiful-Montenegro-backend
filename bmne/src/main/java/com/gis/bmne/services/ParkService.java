@@ -23,4 +23,7 @@ public class ParkService {
 		return parkRepository.findAll();
 	}
 	
+	public void insertPark(Park newPark) {
+		parkRepository.save(newPark);
+	}
 }

@@ -3,6 +3,8 @@ package com.gis.bmne.models;
 import org.geolatte.geom.G2D;
 import org.geolatte.geom.Polygon;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -43,11 +45,13 @@ public class Park {
 		super();
 	}
 
-	public Park(Long id, String name, String description) {
-		this.id = id;
-		this.name = name;
-		this.description = description;
-	}
+//	public Park(@JsonProperty("name") String name, @JsonProperty("description") String description,@JsonProperty("geometry") Polygon<G2D> geometry) {
+//		super();
+//		this.name = name;
+//		this.description = description;
+//		this.geometry = geometry;
+//	}
+	
 	
 	public Park(@JsonProperty("id")Long id, @JsonProperty("name") String name, @JsonProperty("description") String description,@JsonProperty("geometry") Polygon<G2D> geometry) {
 		super();
