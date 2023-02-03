@@ -33,8 +33,10 @@ public class LocationService {
 		return locationRepository.getLastInsertedLocation();
 	}
 	
-	public Optional<Location> getLocationById(Long id) {
-		return locationRepository.findById(id);
+	public Location getLocationById(Long id) {
+		Optional<Location> loc = locationRepository.findById(id);
+		
+		return loc.orElse(null);
 		
 	}
 }
