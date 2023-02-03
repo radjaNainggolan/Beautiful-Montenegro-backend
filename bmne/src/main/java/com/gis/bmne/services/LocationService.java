@@ -28,4 +28,7 @@ public class LocationService {
 		locationRepository.save(newLocation);
 	}
 	
+	public Long getLastInsertedLoaction() {
+		return locationRepository.getLastInsertedLocation();
+	}
 }

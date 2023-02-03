@@ -34,4 +34,9 @@ public class LocationController {
 		locationService.insertLocation(newLocation);
 	}
 	
+	@GetMapping("/last")
+	public Long getLastInsertedLocation() {
+		return locationService.getLastInsertedLoaction();
+	}
+	
 }
