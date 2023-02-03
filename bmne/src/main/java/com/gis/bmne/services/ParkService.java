@@ -31,4 +31,9 @@ public class ParkService {
 	public Long selectLastInsertedPark(){
 		return parkRepository.getLastInsertedPark();
 	}
+	
+	public Park getParkById(Long id) {
+		Optional<Park> park = parkRepository.findById(id);
+		return park.orElse(null);
+	}
 }
