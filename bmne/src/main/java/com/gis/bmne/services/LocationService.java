@@ -1,6 +1,7 @@
 package com.gis.bmne.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,5 +31,10 @@ public class LocationService {
 	
 	public Long getLastInsertedLoaction() {
 		return locationRepository.getLastInsertedLocation();
+	}
+	
+	public Optional<Location> getLocationById(Long id) {
+		return locationRepository.findById(id);
+		
 	}
 }
