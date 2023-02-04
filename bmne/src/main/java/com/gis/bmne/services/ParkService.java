@@ -34,6 +34,6 @@ public class ParkService {
 	
 	public Park getParkById(Long id) {
 		Optional<Park> park = parkRepository.findById(id);
-		return park.orElse(null);
+		return park.orElse(null); //this should be solved
 	}
 }
