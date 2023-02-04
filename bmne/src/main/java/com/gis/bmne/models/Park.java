@@ -1,5 +1,7 @@
 package com.gis.bmne.models;
 
+import java.util.Set;
+
 import org.geolatte.geom.G2D;
 import org.geolatte.geom.Polygon;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,6 +12,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -40,25 +43,23 @@ public class Park {
 			columnDefinition = "geometry(Polygon,3857)"
 	)
 	private Polygon<G2D> geometry; 
+	
+	@OneToMany(mappedBy = "park")
+	private Set<ParkImage> images;
 
 	public Park() {
 		super();
 	}
 
-//	public Park(@JsonProperty("name") String name, @JsonProperty("description") String description,@JsonProperty("geometry") Polygon<G2D> geometry) {
-//		super();
-//		this.name = name;
-//		this.description = description;
-//		this.geometry = geometry;
-//	}
 	
 	
-	public Park(@JsonProperty("id")Long id, @JsonProperty("name") String name, @JsonProperty("description") String description,@JsonProperty("geometry") Polygon<G2D> geometry) {
+	public Park(@JsonProperty("id")Long id, @JsonProperty("name") String name, @JsonProperty("description") String description,@JsonProperty("geometry") Polygon<G2D> geometry, @JsonProperty("images") Set<ParkImage> images) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.geometry = geometry;
+		this.images = images;
 	}
 
 	public Long getId() {
@@ -91,6 +92,17 @@ public class Park {
 
 	public void setGeometry(Polygon<G2D> geometry) {
 		this.geometry = geometry;
+	}
+
+
+
+	public Set<ParkImage> getImages() {
+		return images;
+	}
+
+
+	public void setImages(Set<ParkImage> images) {
+		this.images = images;
 	}
 	
 	
