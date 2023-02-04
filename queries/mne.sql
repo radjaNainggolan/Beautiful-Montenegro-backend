@@ -10,6 +10,10 @@ from
 	
 select p.id from park as p order by p.id desc limit 1
 	
+select *
+from 
+	park_image
+	
 --point
 
 insert into location(name, description, geometry) values ('Sokolovo grlo','nesto bzv',ST_GeomFromText('POINT(2 5)'));

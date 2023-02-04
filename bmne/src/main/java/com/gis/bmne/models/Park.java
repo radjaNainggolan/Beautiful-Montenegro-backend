@@ -1,5 +1,6 @@
 package com.gis.bmne.models;
 
+import java.util.List;
 import java.util.Set;
 
 import org.geolatte.geom.G2D;
@@ -7,11 +8,13 @@ import org.geolatte.geom.Polygon;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -44,8 +47,9 @@ public class Park {
 	)
 	private Polygon<G2D> geometry; 
 	
-	@OneToMany(mappedBy = "park")
-	private Set<ParkImage> images;
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "park_id", referencedColumnName = "id")
+	private List<ParkImage> images;
 
 	public Park() {
 		super();
@@ -53,7 +57,7 @@ public class Park {
 
 	
 	
-	public Park(@JsonProperty("id")Long id, @JsonProperty("name") String name, @JsonProperty("description") String description,@JsonProperty("geometry") Polygon<G2D> geometry, @JsonProperty("images") Set<ParkImage> images) {
+	public Park(@JsonProperty("id")Long id, @JsonProperty("name") String name, @JsonProperty("description") String description,@JsonProperty("geometry") Polygon<G2D> geometry, @JsonProperty("images") List<ParkImage> images) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -96,12 +100,12 @@ public class Park {
 
 
 
-	public Set<ParkImage> getImages() {
+	public List<ParkImage> getImages() {
 		return images;
 	}
 
 
-	public void setImages(Set<ParkImage> images) {
+	public void setImages(List<ParkImage> images) {
 		this.images = images;
 	}
 	
