@@ -7,7 +7,6 @@ select *
 from
 	park
 	
-	
 select p.id from park as p order by p.id desc limit 1
 	
 select *
@@ -21,4 +20,8 @@ insert into location(name, description, geometry) values ('Sokolovo grlo','nesto
 select *
 from
 	location
+	
+select *
+from
+	location_image
 	

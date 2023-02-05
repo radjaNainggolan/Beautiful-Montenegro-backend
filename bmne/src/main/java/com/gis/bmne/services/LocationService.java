@@ -44,4 +44,8 @@ public class LocationService {
 		locationRepository.deleteById(id);
 	}
 	
+	public void updateLocation(Location updateLocation) {
+		locationRepository.save(updateLocation);
+	}
+	
 }

@@ -45,6 +45,6 @@ public class ParkService {
 	
 	public void updatePark(Park updatePark) {
 		parkRepository.save(updatePark);
-		//parkImageRepository.saveAll(updatePark.getImages());
+		
 	}
 }
