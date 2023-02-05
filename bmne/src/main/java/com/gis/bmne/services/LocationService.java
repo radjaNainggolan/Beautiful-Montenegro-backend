@@ -39,4 +39,9 @@ public class LocationService {
 		return loc.orElse(null);
 		
 	}
+	
+	public void deleteLocationById(Long id) {
+		locationRepository.deleteById(id);
+	}
+	
 }
