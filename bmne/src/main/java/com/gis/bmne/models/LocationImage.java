@@ -21,6 +21,7 @@ public class LocationImage {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonProperty("id")
 	private Long id;
 	
 	@Column(
