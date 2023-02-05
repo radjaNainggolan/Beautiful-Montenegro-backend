@@ -36,4 +36,8 @@ public class ParkService {
 		Optional<Park> park = parkRepository.findById(id);
 		return park.orElse(null); //this should be solved
 	}
+	
+	public void deleteParkById(Long id) {
+		parkRepository.deleteById(id);
+	}
 }
