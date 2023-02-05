@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gis.bmne.models.Park;
+import com.gis.bmne.repositories.ParkImageRepository;
 import com.gis.bmne.repositories.ParkRepository;
 
 @Service
@@ -18,6 +19,7 @@ public class ParkService {
 	public ParkService(ParkRepository parkRepository) {
 		super();
 		this.parkRepository = parkRepository;
+		
 	}
 	
 	public List<Park> getAllParks(){
@@ -39,5 +41,10 @@ public class ParkService {
 	
 	public void deleteParkById(Long id) {
 		parkRepository.deleteById(id);
+	}
+	
+	public void updatePark(Park updatePark) {
+		parkRepository.save(updatePark);
+		//parkImageRepository.saveAll(updatePark.getImages());
 	}
 }
