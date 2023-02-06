@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.gis.bmne.models.LocationImage;
 
 @Repository
-public interface LocaitionImageRepository extends JpaRepository<LocationImage, Long> {
+public interface LocationImageRepository extends JpaRepository<LocationImage, Long> {
 
 }

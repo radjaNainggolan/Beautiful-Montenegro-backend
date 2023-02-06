@@ -3,6 +3,7 @@ package com.gis.bmne.controllers;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.gis.bmne.models.Park;
+import com.gis.bmne.services.ParkImageService;
 import com.gis.bmne.services.ParkService;
 
 @RestController
@@ -22,10 +24,13 @@ import com.gis.bmne.services.ParkService;
 public class ParkController {
 
 	ParkService parkService;
+	ParkImageService parkImageService;
 
-	public ParkController(ParkService parkService) {
+	@Autowired
+	public ParkController(ParkService parkService, ParkImageService parkImageService) {
 		super();
 		this.parkService = parkService;
+		this.parkImageService = parkImageService;
 	}
 	
 	@GetMapping
@@ -57,4 +62,10 @@ public class ParkController {
 	public void updatePark(@RequestBody Park park) {
 		parkService.updatePark(park); 
 	}
+	
+	@DeleteMapping("/image/{id}")
+	public void deleteImageById(@PathVariable("id") Long id){
+		parkImageService.deleteParkImageById(id);
+	}
+	
 }
