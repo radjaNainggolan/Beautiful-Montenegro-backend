@@ -1,7 +1,18 @@
 package com.gis.bmne.models;
 
+import java.util.Collection;
+import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import com.gis.bmne.security.Role;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -11,7 +22,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "_user")
 
-public class User {
+public class User implements UserDetails{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,21 +40,21 @@ public class User {
 	@Column(nullable = false)
 	private String password;
 	
-	@Column(nullable = false)
-	private boolean admin =  false;
+	@Enumerated(EnumType.STRING)
+	private Role role;
 
 	public User() {
 		super();
 	}
 
-	public User(Long id, String firstname, String lastname, String email, String password, boolean admin) {
+	public User(Long id, String firstname, String lastname, String email, String password, Role role) {
 		super();
 		this.id = id;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.email = email;
 		this.password = password;
-		this.admin = admin;
+		this.role = role;
 		
 	}
 
@@ -79,6 +90,7 @@ public class User {
 		this.email = email;
 	}
 
+	@Override
 	public String getPassword() {
 		return password;
 	}
@@ -87,12 +99,42 @@ public class User {
 		this.password = password;
 	}
 
-	public boolean isAdmin() {
-		return admin;
+	
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return List.of(new SimpleGrantedAuthority(role.name()));
 	}
 
-	public void setAdmin(boolean admin) {
-		this.admin = admin;
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return email;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 
 

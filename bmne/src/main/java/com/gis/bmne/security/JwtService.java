@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-import org.springframework.stereotype.Component;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import com.gis.bmne.models.User;
@@ -33,29 +33,27 @@ public class JwtService {
 		return claimsResolver.apply(claims);
 	}
 	
-	public String generateToken(User user) {
-		return generateToken(new HashMap<>(), user);
+	public String generateToken(UserDetails userDetails) {
+		return generateToken(new HashMap<>(), userDetails);
 	}
 	
-	public String generateToken(Map<String, Object> extraClaims, User user) {
+	public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
 		return Jwts
 				.builder()
 				.setClaims(extraClaims)
-				.setSubject(user.getEmail())
+				.setSubject(userDetails.getUsername())
 				.setIssuedAt(new Date(System.currentTimeMillis()))
 				.setExpiration(new Date(System.currentTimeMillis() + 1000*60*24))
 				.signWith(getSignKey(), SignatureAlgorithm.HS256)
 				.compact();
 	}
 	
-	public boolean isTokenValid(String token, User user) {
+	public boolean isTokenValid(String token, UserDetails userDetails) {
 		final String email = extractUserEmail(token);
-		return (email.equalsIgnoreCase(user.getEmail()) && !isTokenExpired(token));
+		return (email.equalsIgnoreCase(userDetails.getUsername()) && !isTokenExpired(token));
 	}
 	
 	 
-	
-	
 	private boolean isTokenExpired(String token) {
 		return extractExpiration(token).before(new Date());
 	}
@@ -65,9 +63,6 @@ public class JwtService {
 	}
 	
 	
-	
-	
-
 	private Claims extractAllClaims(String token) {
 		return Jwts
 				.parserBuilder()
