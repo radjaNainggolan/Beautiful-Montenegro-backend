@@ -31,12 +31,12 @@ public class LocationController {
 		this.locationImageService = locationImageService;
 	}
 	
-	@GetMapping
+	@GetMapping("/all")
 	public List<Location> getAllLocations(){
 		return locationService.getAllLocations();
 	}
 	
-	@PostMapping
+	@PostMapping("/newlocation")
 	public void insertLocation(@RequestBody Location newLocation) {
 		locationService.insertLocation(newLocation);
 	}
@@ -51,17 +51,17 @@ public class LocationController {
 		return locationService.getLocationById(id);
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/delete/{id}")
 	public void deleteLocationById(@PathVariable("id") Long id) {
 		locationService.deleteLocationById(id);
 	}
 	
-	@PutMapping
+	@PutMapping("/update")
 	public void updateLocation(@RequestBody Location updateLocation) {
 		locationService.updateLocation(updateLocation);
 	}
 	
-	@DeleteMapping("/image/{id}")
+	@DeleteMapping("/image/delete/{id}")
 	public void deleteLocationImageById(@PathVariable("id") Long id) {
 		locationImageService.deleteLocationImageById(id);
 	}

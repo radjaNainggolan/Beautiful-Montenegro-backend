@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,12 +34,12 @@ public class ParkController {
 		this.parkImageService = parkImageService;
 	}
 	
-	@GetMapping
+	@GetMapping("/all")
 	List<Park> getAllParks(){
 		return parkService.getAllParks();
 	}
 	
-	@PostMapping
+	@PostMapping("/newpark")
 	void insertPark(@RequestBody Park newPark) {
 		parkService.insertPark(newPark);
 	}
@@ -53,17 +54,17 @@ public class ParkController {
 		return parkService.getParkById(id);
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/delete/{id}")
 	public void deleteParkById(@PathVariable("id") Long id) {
 		parkService.deleteParkById(id);
 	}
 	
-	@PutMapping
+	@PutMapping("/update")
 	public void updatePark(@RequestBody Park park) {
 		parkService.updatePark(park); 
 	}
 	
-	@DeleteMapping("/image/{id}")
+	@DeleteMapping("/image/delete/{id}")
 	public void deleteImageById(@PathVariable("id") Long id){
 		parkImageService.deleteParkImageById(id);
 	}

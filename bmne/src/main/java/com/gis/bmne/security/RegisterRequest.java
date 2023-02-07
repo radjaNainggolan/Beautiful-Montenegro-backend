@@ -8,7 +8,7 @@ public class RegisterRequest {
 	private String password;
 	
 	public RegisterRequest() {
-		super();
+		super(); 
 	}
 
 	public RegisterRequest(String firstname, String lastname, String email, String password) {
