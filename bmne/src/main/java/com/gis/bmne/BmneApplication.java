@@ -3,6 +3,8 @@ package com.gis.bmne;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.gis.bmne.models.User;
+
 @SpringBootApplication
 public class BmneApplication {
 
@@ -10,5 +12,4 @@ public class BmneApplication {
 		SpringApplication.run(BmneApplication.class, args);
 	}
 
-	 
 }
